@@ -1,0 +1,15 @@
+{
+    "name": "pc/php-crawler",
+    "authors": [
+        {
+            "name": "John Mackenzie",
+            "email": "johnmackenziewebdeveloper@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/symfony": "^3.3",
+        "guzzlehttp/guzzle": "^6.3",
+        "phpunit/phpunit": "^6.4",
+        "layershifter/tld-extract": "^1.2"
+    }
+}
