@@ -14,6 +14,7 @@ class Crawler
     protected $baseUrl;
     protected $allowedHosts = [];
     protected $extractor;
+    protected $callback;
 
     public function __construct($url, $allowedHosts = [])
     {
@@ -22,11 +23,12 @@ class Crawler
         $this->allowedHosts = array_merge($allowedHosts, [$this->extractor->parse($url)->getFullHost()]);
     }
 
-    public function crawl($maxDepth = 10)
+    public function crawl($maxDepth = 10, $callback)
     {
+        $this->callback = $callback;
         $this->depth = $maxDepth;
         $this->spider($this->baseUrl, $maxDepth);
-
+        
         return $this;
     }
 
@@ -71,6 +73,9 @@ class Crawler
 
                     // mark current url as visited
                     $this->links[$url]['visited'] = true;
+
+                    $closure = $this->callback;
+                    $closure();
 
                     // spawn spiders for the child links, marking the depth as decreasing, or send out the soldiers
                     $this->spawn($pageLinks, $maxDepth - 1);
