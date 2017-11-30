@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpCrawler;
+namespace JohnMackenzie91;
 
 use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler as DomCrawler;
