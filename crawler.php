@@ -75,7 +75,7 @@ class Crawler
                     $this->links[$url]['visited'] = true;
 
                     $closure = $this->callback;
-                    $closure();
+                    $closure($html, $url);
 
                     // spawn spiders for the child links, marking the depth as decreasing, or send out the soldiers
                     $this->spawn($pageLinks, $maxDepth - 1);
