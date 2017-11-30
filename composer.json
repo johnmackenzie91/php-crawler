@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "JohnMackenzie91\\PHPCrawler": "src/"
+            "JohnMackenzie91\\PHPCrawler\\": "src/"
         }
     }
 }
