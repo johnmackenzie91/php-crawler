@@ -23,6 +23,12 @@ class Crawler
         $this->allowedHosts = array_merge($allowedHosts, [$this->extractor->parse($url)->getFullHost()]);
     }
 
+    /**
+     * Begin crawling site
+     * @param int $maxDepth
+     * @param $callback
+     * @return $this
+     */
     public function crawl($maxDepth = 10, $callback)
     {
         $this->callback = $callback;
