@@ -1,0 +1,27 @@
+{
+  "name": "johnmackenzie91/php-crawler",
+  "type": "library",
+  "description": "A simple web crawler built in PHP.",
+  "keywords": ["PHP", "web", "crawler"],
+  "homepage": "https://github.com/johnmackenzie91/php-crawler",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "John Mackenzie",
+      "email": "johnmackenziewebdeveloper@gmail.com",
+      "homepage": "https://www.johnmackenzie.co.uk",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^6.3",
+    "layershifter/tld-extract": "^1.2",
+    "symfony/dom-crawler": "^4.0",
+    "symfony/css-selector": "^4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "JohnMackenzie91\\": "src/"
+    }
+  }
+}
