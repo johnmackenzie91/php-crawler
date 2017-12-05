@@ -2,10 +2,10 @@
 A web crawler built in PHP
 
 ## Getting Started
-
-`require './vendor/autoload.php';`
-
-`use JohnMackenzie91\Crawler as Crawler;`
+````php
+require './vendor/autoload.php';
+use JohnMackenzie91\Crawler as Crawler;
+````
 
 Instanciat a new Crawler Object, this takes the start domain, and an array of allowed domains, the domain of the start url is automatically added to the list of allowed domains.
 
