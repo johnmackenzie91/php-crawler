@@ -10,7 +10,7 @@ use JohnMackenzie91\Crawler as Crawler;
 Instanciat a new Crawler Object, this takes the start domain, and an array of allowed domains, the domain of the start url is automatically added to the list of allowed domains.
 
 ````php
-$crawler = new Crawler("https://www.johnmackenzie.co.uk", [johnmackenzie.co.uk]);
+$crawler = new Crawler("https://www.johnmackenzie.co.uk", ["johnmackenzie.co.uk"]);
 ````
 
 Then begin the crawl by calling crawl() on the Crawler object
