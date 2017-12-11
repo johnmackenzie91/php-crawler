@@ -4,7 +4,6 @@ namespace JohnMackenzie91;
 
 use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler as DomCrawler;
-use LayerShifter\TLDExtract\Extract;
 
 class Crawler
 {
@@ -12,15 +11,15 @@ class Crawler
     protected $links = [];
     protected $maxDepth = 0;
     protected $baseUrl;
-    protected $allowedHosts = [];
     protected $extractor;
     protected $callback;
+    protected $directory;
 
     public function __construct($url, $allowedHosts = [])
     {
-        $this->extractor = new Extract();
+        $this->directory = new Directory();
+        $this->directory->addAllowedDomains(array_merge($allowedHosts, [$url]));
         $this->baseUrl = $url;
-        $this->allowedHosts = array_merge($allowedHosts, [$this->extractor->parse($url)->getFullHost()]);
     }
 
     /**
@@ -135,7 +134,7 @@ class Crawler
                 //fix link if not complete
                 $currentLinks[$nodeUrl]['url'] = $this->fixUrl($currentLinks[$nodeUrl]['url']);
 
-                $isAllowedHost = $this->isAllowedHost($currentLinks[$nodeUrl]['url']);
+                $isAllowedHost = $this->directory->isAllowedDomain($currentLinks[$nodeUrl]['url']);
 
                 // check if the link is external
                 if ($isAllowedHost) {
@@ -152,12 +151,6 @@ class Crawler
 
         // Send back the reports
         return $currentLinks;
-    }
-
-    public function isAllowedHost($url)
-    {
-        $domain = $this->extractor->parse($url)->getFullHost();
-        return in_array($domain, $this->allowedHosts);
     }
 
     public function fixUrl($url)
