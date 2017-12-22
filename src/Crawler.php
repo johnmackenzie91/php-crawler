@@ -53,34 +53,26 @@ class Crawler
                 'is_allowed' => true,
             ];
 
-            // Create a client and send out a request to a url
-            $client = new Client();
-            $crawler = $client->request('GET', $url);
+            $request = Request::get($url);
 
-            // get the content of the request result
-            $html = $crawler->getBody()->getContents();
-            // lets also get the status code
-            $statusCode = $crawler->getStatusCode();
 
             // Set the status code
-            $this->links[$url]['status_code'] = $statusCode;
-            if ($statusCode == 200) {
+            $this->links[$url]['status_code'] = $request['status_code'];
+            if ($request['status_code'] == 200) {
 
-                // Make sure the page is html
-                $contentType = $crawler->getHeader('Content-Type');
-                if (strpos($contentType[0], 'text/html') !== false) {
+                if ($request['response_is_html']) {
 
                     // collect the links within the page
                     $pageLinks = [];
                     if (@$this->links[$url]['is_allowed'] == true) {
-                        $pageLinks = $this->extractLinks($html, $url);
+                        $pageLinks = $this->extractLinks($request['response_html'], $url);
                     }
 
                     // mark current url as visited
                     $this->links[$url]['visited'] = true;
 
                     $closure = $this->callback;
-                    $closure($html, $url);
+                    $closure($request['response_html'], $url);
 
                     // spawn spiders for the child links, marking the depth as decreasing, or send out the soldiers
                     $this->spawn($pageLinks, $maxDepth - 1);

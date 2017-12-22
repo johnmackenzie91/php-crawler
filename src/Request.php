@@ -29,10 +29,10 @@ class Request
         }
 
         return [
-            'html' => $html,
+            'response_html' => $html,
             'status_code' => $statusCode,
             'content_type' => $contentType,
-            'is_html' => (strpos($contentType, 'text/html') !== false) ? true : false
+            'response_is_html' => (strpos($contentType, 'text/html') !== false) ? true : false
         ];
     }
 }
