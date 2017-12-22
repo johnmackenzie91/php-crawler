@@ -2,7 +2,7 @@
 
 namespace JohnMackenzie91\Queues;
 
-class UrlsToCrawl extends Stack
+class UrlsCrawled extends Stack
 {
     public static function Instance($limit = 0)
     {

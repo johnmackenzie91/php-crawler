@@ -19,7 +19,6 @@ class Request
             // lets also get the status code
             $statusCode = $request->getStatusCode();
             $contentType = $request->getHeader('Content-Type')[0];
-
         } catch (\GuzzleHttp\Exception\RequestException $ex) {
             // do nothing or something
             $statusCode = 500;

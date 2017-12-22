@@ -26,7 +26,7 @@ class Stack
         // trap for stack overflow
         if ($this->limit === 0 || count($this->stack) < $this->limit) {
             // prepend item to the start of the array
-            array_unshift($this->stack, $item);
+            array_push($this->stack, $item);
         } else {
             return false;
         }

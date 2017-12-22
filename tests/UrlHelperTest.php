@@ -36,7 +36,5 @@ class UrlHelperTest extends TestCase
 
         $this->assertEquals(true, $directory->isAllowedDomain('https://www.johnmackenzie.co.uk/blog'));
     }
-
-
 }
 ?>
