@@ -17,8 +17,8 @@ class Crawler
 
     public function __construct($url, $allowedHosts = [])
     {
-        $this->directory = new Directory();
-        $this->directory->addAllowedDomains(array_merge($allowedHosts, [$url]));
+        $this->urlHelper = new UrlHelper();
+        $this->urlHelper->addAllowedDomains(array_merge($allowedHosts, [$url]));
         $this->baseUrl = $url;
     }
 
@@ -134,7 +134,7 @@ class Crawler
                 //fix link if not complete
                 $currentLinks[$nodeUrl]['url'] = $this->fixUrl($currentLinks[$nodeUrl]['url']);
 
-                $isAllowedHost = $this->directory->isAllowedDomain($currentLinks[$nodeUrl]['url']);
+                $isAllowedHost = $this->urlHelper->isAllowedDomain($currentLinks[$nodeUrl]['url']);
 
                 // check if the link is external
                 if ($isAllowedHost) {
