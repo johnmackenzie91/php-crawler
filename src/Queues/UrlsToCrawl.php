@@ -2,9 +2,9 @@
 
 namespace JohnMackenzie91\Queues;
 
-class UrlsToCrawlList extends Stack {
+class UrlsToCrawl extends Stack {
 
-    public static function Instance($limit)
+    public static function Instance($limit = 0)
     {
         static $inst = null;
         if ($inst === null) {

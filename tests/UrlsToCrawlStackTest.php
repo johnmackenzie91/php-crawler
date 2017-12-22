@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use JohnMackenzie91\Queues\UrlsToCrawlList;
+use JohnMackenzie91\Queues\UrlsToCrawl;
 
 class UrlsToCrawlStackTest extends TestCase
 {
@@ -12,7 +12,7 @@ class UrlsToCrawlStackTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $stack = UrlsToCrawlList::Instance(5);
+        $stack = UrlsToCrawl::Instance(5);
         while ($stack->count() !== 0) {
             $stack->pop();
         }
@@ -24,7 +24,7 @@ class UrlsToCrawlStackTest extends TestCase
      */
     public function can_push_to_stack()
     {
-        $stack = UrlsToCrawlList::Instance(5);
+        $stack = UrlsToCrawl::Instance(5);
 
         $stack->push('www.example.com');
         $stack->push('www.google.com');
@@ -38,7 +38,7 @@ class UrlsToCrawlStackTest extends TestCase
      */
     public function can_pop_to_stack()
     {
-        $stack = UrlsToCrawlList::Instance(5);
+        $stack = UrlsToCrawl::Instance(5);
 
         $stack->push('www.example.com');
         $stack->push('www.google.com');
@@ -55,7 +55,7 @@ class UrlsToCrawlStackTest extends TestCase
      */
     public function can_top()
     {
-        $stack = UrlsToCrawlList::Instance(5);
+        $stack = UrlsToCrawl::Instance(5);
 
         $stack->push('www.example.com');
         $stack->push('www.google.com');
@@ -69,7 +69,7 @@ class UrlsToCrawlStackTest extends TestCase
      */
     public function is_empty()
     {
-        $stack = UrlsToCrawlList::Instance(5);
+        $stack = UrlsToCrawl::Instance(5);
 
         $this->assertTrue(true, $stack->isEmpty());
     }
@@ -80,7 +80,7 @@ class UrlsToCrawlStackTest extends TestCase
      */
     public function can_search()
     {
-        $stack = UrlsToCrawlList::Instance(5);
+        $stack = UrlsToCrawl::Instance(5);
 
         $stack->push('www.example.com');
         $stack->push('www.google.com');

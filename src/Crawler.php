@@ -3,22 +3,29 @@
 namespace JohnMackenzie91;
 
 use GuzzleHttp\Client;
+use JohnMackenzie91\Queues\UrlsToCrawl;
 use Symfony\Component\DomCrawler\Crawler as DomCrawler;
 
 class Crawler
 {
     protected $url;
+    // delete this when deprecated
     protected $links = [];
     protected $maxDepth = 0;
     protected $baseUrl;
     protected $extractor;
     protected $callback;
+    // delete this when deprecated
     protected $directory;
+    protected $urlsCrawled;
+    protected $urlsToCrawl;
+
 
     public function __construct($url, $allowedHosts = [])
     {
         $this->urlHelper = new UrlHelper();
         $this->urlHelper->addAllowedDomains(array_merge($allowedHosts, [$url]));
+        $this->urlsToCrawl = UrlsToCrawl::Instance();
         $this->baseUrl = $url;
     }
 
